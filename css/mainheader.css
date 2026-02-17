@@ -1,0 +1,270 @@
+/* ============================================================================
+   MAIN HEADER - Ekran görüntüsüne göre sıfırdan oluşturuldu
+   ============================================================================ */
+
+/* Header Container */
+.main-header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    position: fixed;
+    top: 34px; /* Topbar yüksekliği kadar aşağıda */
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.header-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 40px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+}
+
+/* ============================================================================
+   LOGO
+   ============================================================================ */
+.logo {
+    flex-shrink: 0;
+}
+
+.logo a {
+    display: block;
+}
+
+.logo-img {
+    height: 45px;
+    width: auto;
+    display: block;
+    vertical-align: middle;
+}
+
+/* ============================================================================
+   ANA MENÜ
+   ============================================================================ */
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex: 0;
+    margin-left: 330px;  /* Logo ile menü arası boşluk */
+
+
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    background: none;
+    border: none;
+    color: #333333;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 10px 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    color: #E4002B;
+}
+
+/* Dropdown Ok İşareti */
+.dropdown-arrow {
+    font-size: 9px;
+    color: #666;
+    transition: transform 0.2s ease;
+}
+
+.nav-item:hover .dropdown-arrow {
+    transform: rotate(180deg);
+    color: #E4002B;
+}
+
+/* Dropdown Menü */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    padding: 8px 0;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    margin-top: 8px;
+    z-index: 1000;
+}
+
+.nav-item:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: block;
+    padding: 12px 20px;
+    color: #333333;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #f5f5f5;
+    color: #E4002B;
+}
+
+/* ============================================================================
+   SAĞ TARAF - ARAMA VE FİYAT AL
+   ============================================================================ */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+    margin-left: 30px;
+}
+
+/* Arama Kutusu */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    padding: 8px 40px 8px 16px;
+    font-size: 14px;
+    width: 140px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.search-input:focus {
+    border-color: #E4002B;
+    width: 180px;
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+.search-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    color: #666;
+    transition: color 0.2s ease;
+}
+
+.search-btn:hover {
+    color: #E4002B;
+}
+
+/* Fiyat Al Butonu */
+.cta-button {
+    background-color: #E4002B;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.cta-button:hover {
+    background-color: #c5001f;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(228, 0, 43, 0.3);
+}
+
+/* ============================================================================
+   MOBİL MENÜ TOGGLE (Varsayılan gizli)
+   ============================================================================ */
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.mobile-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #333333;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* ============================================================================
+   RESPONSİVE - MOBİL (1200px ve altı)
+   ============================================================================ */
+@media (max-width: 1200px) {
+    .main-header {
+        top: 0; /* Mobilde topbar gizli */
+    }
+
+    .header-container {
+        padding: 0 20px;
+        height: 60px;
+        gap: 15px;
+    }
+
+    .main-nav {
+        display: none; /* Hamburger menü ile değiştirilecek */
+    }
+
+    .header-right {
+        display: none; /* Hamburger menüde olacak */
+    }
+
+    .mobile-toggle {
+        display: flex;
+    }
+}
+
+/* ============================================================================
+   DESKTOP GÖRÜNÜM GARANTİSİ (1201px ve üstü)
+   ============================================================================ */
+@media (min-width: 1201px) {
+    .main-nav {
+        display: flex !important;
+    }
+
+    .header-right {
+        display: flex !important;
+    }
+
+    .mobile-toggle {
+        display: none !important;
+    }
+}

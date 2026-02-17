@@ -1,0 +1,30 @@
+/* Reset ve Genel Stiller */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #ffffff;
+    min-height: 100vh;
+    padding-top: 105px; /* Fixed topbar + header için alan */
+    padding-bottom: 60px; /* Bottom bar için alan bırak */
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    body {
+        padding-top: 70px; /* Topbar gizli, sadece header için alan */
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 70px; /* Mobil header için alan */
+        padding-bottom: 150px;  /* Mobilde daha fazla alan */
+    }
+}

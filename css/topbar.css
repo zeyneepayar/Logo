@@ -1,0 +1,79 @@
+/* Top Bar Module Styles */
+.topbar {
+    background-color: #2b2b2b;
+    color: #ffffff;
+    font-size: 13px;
+    border-bottom: 1px solid #3a3a3a;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+}
+
+.topbar-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 8px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.language-switcher {
+    display: flex;
+    gap: 5px;
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    color: #b0b0b0;
+    cursor: pointer;
+    padding: 4px 8px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.lang-btn:hover {
+    color: #ffffff;
+}
+
+.lang-btn.active {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.topbar-nav {
+    display: flex;
+    gap: 25px;
+}
+
+.topbar-link {
+    color: #b0b0b0;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-size: 13px;
+}
+
+.topbar-link:hover {
+    color: #ffffff;
+}
+
+/* Responsive - Hide on mobile */
+@media (max-width: 1024px) {
+    .topbar {
+        display: none;
+    }
+}

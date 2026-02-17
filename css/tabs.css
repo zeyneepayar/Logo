@@ -1,0 +1,196 @@
+/* Tab Navigation Module Styles */
+
+/* Tab Navigation Section */
+.tab-navigation-section {
+    background: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.tab-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.tab-nav {
+    display: flex;
+    gap: 0;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: #333333;
+    font-size: 15px;
+    font-weight: 500;
+
+    padding: 56px 38px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+
+    align-self: flex-end; /* 👈 kritik satır */
+}
+
+
+.tab-btn:hover {
+    color: #E4002B;
+    background: #fafafa;
+}
+
+.tab-btn.active {
+    color: #E4002B;
+    border-bottom-color: #E4002B;
+    font-weight: 600;
+}
+
+/* Tab Content Styles */
+.tab-content-wrapper {
+    background: #ffffff;
+}
+
+.tab-content-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tab-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tab-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+.tab-description {
+    font-size: 17px;
+    color: #666666;
+    line-height: 1.6;
+    margin-bottom: 50px;
+}
+
+/* Tab Content Grid */
+.tab-content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 35px;
+    margin-top: 50px;
+}
+
+.tab-card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 35px;
+    min-height: 200px;
+    transition: all 0.3s ease;
+}
+
+.tab-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.tab-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 12px;
+}
+
+.tab-card p {
+    font-size: 15px;
+    color: #666666;
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .tab-container {
+        padding: 0 20px;
+    }
+    
+    .tab-btn {
+        padding: 18px 20px;
+        font-size: 14px;
+    }
+    
+    .tab-content-container {
+        padding: 40px 20px;
+    }
+    
+    .tab-title {
+        font-size: 28px;
+    }
+    
+    .tab-content-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .tab-nav {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    
+    .tab-nav::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .tab-btn {
+        padding: 16px 20px;
+        font-size: 13px;
+    }
+    
+    .tab-content-container {
+        padding: 30px 15px;
+    }
+    
+    .tab-title {
+        font-size: 24px;
+    }
+    
+    .tab-description {
+        font-size: 15px;
+    }
+    
+    .tab-content-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .tab-card {
+        padding: 20px;
+    }
+}

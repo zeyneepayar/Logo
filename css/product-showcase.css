@@ -1,0 +1,237 @@
+/* Product Showcase Component Styles */
+
+.product-showcase {
+    background: #f5f5f5;
+    padding: 80px 0 100px;
+}
+
+.showcase-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Header Section */
+.showcase-header {
+   text-align: left;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.showcase-subtitle {
+    color: #E4002B;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.showcase-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 50px;
+    line-height: 1.2;
+}
+
+/* Tab Toggle Buttons - Segmented Bar Style */
+.showcase-tabs {
+    display: inline-flex;
+    background: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 50px;
+    padding: 4px;
+    gap: 0;
+}
+
+.showcase-tab-btn {
+    background: transparent;
+    color: #666666;
+    border: none;
+    padding: 12px 32px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.showcase-tab-btn:hover {
+    color: #E4002B;
+}
+
+.showcase-tab-btn.active {
+    background: #E4002B;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(228, 0, 43, 0.25);
+}
+
+/* Content Sections */
+.showcase-content-wrapper {
+    margin-top: 50px;
+    position: relative;
+}
+
+.showcase-content {
+    display: none;
+}
+
+.showcase-content.active {
+    display: block;
+    animation: showcaseFadeIn 0.4s ease;
+}
+
+@keyframes showcaseFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* View All Card - Diğer kartlarla aynı tasarım */
+.view-all-card {
+    background: #ffffff; /* Diğer kartlar gibi beyaz */
+    text-decoration: none;
+    /* Diğer tüm stiller product-card'dan inherit edilir */
+}
+
+.view-all-card:hover {
+    /* Normal card hover efektleri geçerli */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-5px);
+}
+
+.view-all-card .product-icon i {
+    color: #E4002B; /* Icon kırmızı - beyaz değil */
+}
+
+.view-all-card .product-name {
+    color: #E4002B; /* Text kırmızı - beyaz değil */
+}
+
+/* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 sabit sütun - alt satıra gitmesin */
+    gap: 25px;
+}
+
+.product-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.product-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-5px);
+}
+
+.product-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-icon i {
+    font-size: 50px;
+    color: #E4002B;
+}
+
+.product-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .product-showcase {
+        padding: 60px 0 80px;
+    }
+    
+    .showcase-container {
+        padding: 0 30px;
+    }
+    
+    .showcase-title {
+        font-size: 36px;
+    }
+    
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-showcase {
+        padding: 50px 0 60px;
+    }
+    
+    .showcase-container {
+        padding: 0 20px;
+    }
+    
+    .showcase-subtitle {
+        font-size: 16px;
+    }
+    
+    .showcase-title {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+    
+    .showcase-tabs {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .showcase-tab-btn {
+        width: 100%;
+        padding: 12px 30px;
+        font-size: 15px;
+    }
+    
+    .showcase-content-wrapper {
+        margin-top: 40px;
+    }
+    
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .product-card {
+        padding: 30px 20px;
+    }
+    
+    .product-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 20px;
+    }
+    
+    .product-icon i {
+        font-size: 40px;
+    }
+    
+    .product-name {
+        font-size: 16px;
+    }
+}

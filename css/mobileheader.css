@@ -1,0 +1,233 @@
+/* Mobile Header Module Styles */
+.mobile-menu {
+    position: fixed;           /* Sayfada sabit konumda kalır (scroll etse de) */
+    top: 0;                    /* Üstten 0 piksel (en üstte başlar) */
+    right: -100%;              /* Başlangıçta sağda gizli (-100% dışarıda) */
+    width: 100%;               /* Genişlik tam ekran */
+    max-width: 100%;           /* Maksimum genişlik de tam ekran (400px yerine) */
+    height: 100vh;             /* Yükseklik tam ekran (viewport height) */
+    background: #ffffff;       /* Arka plan beyaz */
+    box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);  /* Sol tarafa hafif gölge */
+    z-index: 1000;             /* En üstte görünsün (diğer elementlerin üstünde) */
+    overflow-y: auto;          /* İçerik taşarsa dikey scroll */
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);  /* Açılma animasyonu */
+}
+
+.mobile-menu.active {
+    right: 0;                  /* Active olunca sağdan 0'a gelir (görünür) */
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999;
+    transition: all 0.4s ease;
+}
+
+.mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Mobile Menu Header */
+.mobile-menu-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.mobile-menu-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    color: #333333;
+    font-size: 28px;
+    transition: opacity 0.2s ease;
+}
+
+.mobile-menu-close:hover {
+    opacity: 0.7;
+}
+
+/* Mobile Menu Content */
+.mobile-menu-content {
+    padding: 0;
+}
+
+/* Mobile Language Switcher */
+.mobile-lang-switcher {
+    display: flex;
+    gap: 20px;
+    padding: 25px 20px;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 20px;
+}
+
+.mobile-lang-btn {
+    background: transparent;
+    border: none;
+    color: #888888;
+    cursor: pointer;
+    padding: 0;
+    font-size: 13px;
+    font-weight: 400;
+    transition: all 0.2s ease;
+}
+
+.mobile-lang-btn:hover {
+    color: #000000;
+}
+
+.mobile-lang-btn.active {
+    color: #000000;
+    font-weight: 500;
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.mobile-nav-item {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.mobile-nav-link {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 16px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000000;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.mobile-nav-link:hover {
+    color: #E4002B;
+}
+
+.mobile-nav-link-plain {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 16px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000000;
+    display: block;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.mobile-nav-link-plain:hover {
+    color: #E4002B;
+}
+
+.mobile-dropdown-icon {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+    transform: rotate(-90deg);
+}
+
+.mobile-nav-item.active .mobile-dropdown-icon {
+    transform: rotate(0deg);
+}
+
+
+
+/* Mobile Dropdown Menu */
+.mobile-dropdown-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: #f8f8f8;
+}
+
+.mobile-nav-item.active .mobile-dropdown-menu {
+    max-height: 500px;
+}
+
+.mobile-dropdown-item {
+    display: block;
+    padding: 12px 20px;
+    color: #666666;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.mobile-dropdown-item:hover {
+    background-color: #eeeeee;
+    color: #E4002B;
+}
+
+/* Mobile Top Links */
+.mobile-top-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+.mobile-top-link {
+    padding: 16px 20px;
+    color: #888888;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    border-bottom: 1px solid #f0f0f0;
+    transition: color 0.2s ease;
+}
+
+.mobile-top-link:hover {
+    color: #333333;
+}
+
+
+
+/* Hide mobile menu on desktop */
+@media (min-width: 1201px) {
+    .mobile-menu {
+        display: none;
+    }
+}
+
+/* Scrollbar Styling for Mobile Menu */
+.mobile-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.mobile-menu::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.mobile-menu::-webkit-scrollbar-thumb {
+    background: #c0c0c0;
+    border-radius: 3px;
+}
+
+.mobile-menu::-webkit-scrollbar-thumb:hover {
+    background: #a0a0a0;
+}
