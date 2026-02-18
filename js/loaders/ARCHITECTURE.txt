@@ -1,0 +1,265 @@
+/**
+ * ============================================================================
+ * PROJE MİMARİSİ - GÖRSEL ŞEMA
+ * ============================================================================
+ * 
+ * Bu dosya projenin yapısını ve loader'lar arası ilişkileri açıklar.
+ * 
+ * ============================================================================
+ */
+
+/*
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                          UYGULAMA MİMARİSİ                                  │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                                                                             │
+│                           📦 BaseComponentLoader                            │
+│                           (Temel Fonksiyonlar)                              │
+│                                                                             │
+│  • loadComponent()         → Tekli yükleme                                  │
+│  • loadMultipleComponents()→ Toplu yükleme                                  │
+│  • fetchTemplate()         → Template fetch                                 │
+│  • getComponent()          → Component erişimi                              │
+│  • Event System            → Hook'lar ve custom events                      │
+│                                                                             │
+└────────────────────────────┬────────────────────────────────────────────────┘
+                             │
+                             │ extends (miras alır)
+                             │
+        ┌────────────────────┴────────────────────┐
+        │                                         │
+┌───────▼──────────┐                   ┌──────────▼──────────┐
+│                  │                   │                     │
+│  HeaderLoader    │                   │    TabLoader        │
+│                  │                   │                     │
+│  • TopBar        │                   │  • Tab Navigation   │
+│  • MainHeader    │                   │  • Tab Content      │
+│  • MobileHeader  │                   │  • Tab System       │
+│  • BottomBar     │                   │                     │
+│  • Dil Sync      │                   └─────────────────────┘
+│                  │
+└──────────────────┘
+        │                                         │
+        │                              ┌──────────▼──────────┐
+        │                              │                     │
+        │                              │ ProductShowcase     │
+        │                              │ Loader              │
+        │                              │                     │
+        │                              │ • Showcase Template │
+        │                              │ • Tab Switching     │
+        │                              │                     │
+        │                              └─────────────────────┘
+        │
+        │                              ┌─────────────────────┐
+        │                              │                     │
+        │                              │ InfoSectionLoader   │
+        │                              │                     │
+        │                              │ • Info Sections     │
+        │                              │ • Data Integration  │
+        │                              │                     │
+        │                              └─────────────────────┘
+        │
+        │                              ┌─────────────────────┐
+        │                              │                     │
+        │                              │ OnPremiseLoader     │
+        │                              │                     │
+        │                              │ • On-Premise Sections│
+        │                              │ • Data Integration  │
+        │                              │                     │
+        │                              └─────────────────────┘
+        │
+        │                              ┌─────────────────────┐
+        │                              │                     │
+        │                              │ IndustriesLoader    │
+        │                              │                     │
+        │                              │ • Industries Showcase│
+        │                              │ • Data Integration  │
+        │                              │                     │
+        └──────────────────────────────┴─────────────────────┘
+                                       │
+                                       │ Hepsi koordine edilir
+                                       │
+                            ┌──────────▼──────────┐
+                            │                     │
+                            │    AppLoader        │
+                            │  (Koordinatör)      │
+                            │                     │
+                            │  1. Header          │
+                            │  2. Tabs            │
+                            │  3. Showcases       │
+                            │  4. Info            │
+                            │  5. On-Premise      │
+                            │  6. Industries      │
+                            │                     │
+                            │  ⏱️ Performans      │
+                            │  🐛 Hata Yönetimi   │
+                            │  📊 Loglama         │
+                            │                     │
+                            └─────────────────────┘
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                          KLASÖR YAPISI                                      │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+js/
+├── loaders/                      📁 Tüm loader dosyaları
+│   │
+│   ├── BaseComponentLoader.js    🔧 Base class (9.2 KB)
+│   │                              └─ Tüm loader'ların temeli
+│   │
+│   ├── AppLoader.js               🎯 Ana koordinatör (9.9 KB)
+│   │                              └─ Tüm loader'ları yönetir
+│   │
+│   ├── HeaderLoader.js            📄 Header (7.0 KB)
+│   │                              └─ TopBar, MainHeader, MobileHeader, BottomBar
+│   │
+│   ├── TabLoader.js               📄 Tab sistemi (2.8 KB)
+│   │                              └─ Tab navigation, Tab content
+│   │
+│   ├── ProductShowcaseLoader.js  📄 Product showcases (5.0 KB)
+│   │                              └─ Showcase template'leri
+│   │
+│   ├── InfoSectionLoader.js      📄 Info sections (3.0 KB)
+│   │                              └─ Info section modülü
+│   │
+│   ├── OnPremiseLoader.js        📄 On-premise (3.0 KB)
+│   │                              └─ On-premise modülü
+│   │
+│   ├── IndustriesLoader.js       📄 Industries (3.1 KB)
+│   │                              └─ Industries modülü
+│   │
+│   └── README.md                  📖 Dokümantasyon (8.4 KB)
+│
+├── modules/                       📁 JavaScript modülleri
+│   ├── topbar.js
+│   ├── mainheader.js
+│   ├── mobileheader.js
+│   ├── bottombar.js
+│   ├── tabs.js
+│   ├── info-section.js
+│   ├── on-premise.js
+│   └── industries-showcase.js
+│
+└── data/                          📁 Veri dosyaları
+    ├── info-section-data.js
+    ├── on-premise-data.js
+    └── industries-data.js
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                       YÜKLEME SIRASI (AppLoader)                            │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  🚀 DOM Ready Event
+      │
+      ├─ 1️⃣  HeaderLoader.loadAllComponents()
+      │   ├── TopBar          ✅
+      │   ├── MainHeader      ✅
+      │   ├── MobileHeader    ✅
+      │   └── BottomBar       ✅
+      │
+      ├─ 2️⃣  TabLoader.loadTabSystem()
+      │   ├── Tab Navigation  ✅
+      │   └── Tab Content     ✅
+      │
+      ├─ 3️⃣  ProductShowcaseLoader.loadShowcases()
+      │   └── Product Showcases ✅
+      │
+      ├─ 4️⃣  InfoSectionLoader.loadInfoSections()
+      │   └── Info Sections     ✅
+      │
+      ├─ 5️⃣  OnPremiseLoader.loadOnPremiseSections()
+      │   └── On-Premise        ✅
+      │
+      ├─ 6️⃣  IndustriesLoader.loadIndustriesShowcase()
+      │   └── Industries        ✅
+      │
+      └─ ✅ Tüm yüklemeler tamamlandı! (245ms örnek)
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                          COMPONENT AKIŞI                                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+HTML Container                  Loader                Component File
+─────────────────              ──────                ──────────────
+
+#topbarContainer      ◄──── HeaderLoader  ◄──── components/header/topbar.html
+#mainHeaderContainer  ◄──── HeaderLoader  ◄──── components/header/mainheader.html
+#mobileHeaderContainer◄──── HeaderLoader  ◄──── components/header/mobileheader.html
+#bottomBarContainer   ◄──── HeaderLoader  ◄──── components/bottombar.html
+
+#tabNavigationContainer◄──── TabLoader    ◄──── components/tabs/tab-navigation.html
+#tabContentContainer   ◄──── TabLoader    ◄──── components/tabs/tab-content.html
+
+.product-showcase-     ◄──── ProductShow- ◄──── components/product-showcase.html
+  container                   caseLoader
+
+(dinamik)             ◄──── InfoSection-  ◄──── components/info-section.html
+                             Loader
+
+(dinamik)             ◄──── OnPremise-    ◄──── components/on-premise-section.html
+                             Loader
+
+(dinamik)             ◄──── Industries-   ◄──── components/industries-showcase.html
+                             Loader
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                          EVENT SISTEMI                                      │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Global Events (window)
+──────────────────────
+
+• componentLoaded         → Bir component yüklendiğinde
+• componentError          → Component yüklenirken hata oluştuğunda
+• appLoaded              → Tüm uygulama yüklendiğinde
+• appLoadError           → Uygulama yüklenirken kritik hata
+• languageChange         → Dil değiştiğinde (HeaderLoader)
+• headerSearch           → Header'da arama yapıldığında
+• headerSearchSubmit     → Arama gönderildiğinde
+• mobileMenuOpened       → Mobile menü açıldığında
+• mobileMenuClosed       → Mobile menü kapandığında
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                      ÖNEMLİ KURALLAR                                        │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+✅ Her loader sadece kendi component'lerinden sorumludur
+✅ BaseComponentLoader tüm ortak işlevleri sağlar
+✅ AppLoader tüm loader'ları koordine eder
+✅ Loader'lar birbirine bağımlı olmamalıdır
+✅ Her loader kendi hatasını yönetir
+✅ Event'ler merkezi olarak fırlatılır
+✅ Component yolları her loader'da tanımlıdır
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                      PERFORMANS                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+• Component'ler paralel yüklenir (Promise.all)
+• Toplam yükleme süresi ölçülür ve loglanır
+• Her loader bağımsız çalıştığı için hızlıdır
+• Template'ler cache'lenebilir (fetchTemplate)
+
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                      GENİŞLETİLEBİLİRLİK                                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Yeni bir loader eklemek için:
+1. BaseComponentLoader'ı extend et
+2. componentPaths tanımla
+3. Load metodunu yaz
+4. index.html'e script ekle
+5. AppLoader'a entegre et
+
+Örnek: js/loaders/README.md dosyasına bakın.
+
+*/

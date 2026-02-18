@@ -62,8 +62,31 @@
     <script src="js/data/on-premise-data.js"></script>
     <script src="js/modules/on-premise.js"></script>
     
-    <!-- Header Loader -->
-    <script src="js/headerLoader.js"></script>
+    <!-- ================================================================== -->
+    <!-- COMPONENT LOADERS - Modüler Yükleme Sistemi                       -->
+    <!-- ================================================================== -->
+    <!-- 
+        Yeni mimari tasarım:
+        - Her loader kendi sorumluluğuna odaklanır
+        - BaseComponentLoader tüm loader'ların base class'ıdır
+        - AppLoader tüm loader'ları koordine eder
+    -->
+    
+    <!-- Base Loader (tüm loader'lar için temel sınıf) -->
+    <script src="js/loaders/BaseComponentLoader.js"></script>
+    
+    <!-- Özel Loader'lar (alfabetik sıra) -->
+    <script src="js/loaders/HeaderLoader.js"></script>
+    <script src="js/loaders/InfoSectionLoader.js"></script>
+    <script src="js/loaders/IndustriesLoader.js"></script>
+    <script src="js/loaders/OnPremiseLoader.js"></script>
+    <script src="js/loaders/ProductShowcaseLoader.js"></script>
+    <script src="js/loaders/TabLoader.js"></script>
+    
+    <!-- Ana Koordinatör (tüm loader'ları başlatır) -->
+    <script src="js/loaders/AppLoader.js"></script>
+    
+    <!-- ================================================================== -->
     
     <!-- Main Script -->
     <script src="script.js"></script>
